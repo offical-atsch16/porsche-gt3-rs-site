@@ -1,0 +1,50 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "AWLqFoDOCqrhE_wJi2gIv"
+uri = "file://artifacts/porsche-gt3rs/src/assets/hero.png"
+type = "image"
+title = "GT3 RS Hero"
+
+[[generated]]
+id = "fpK862Fc0i_AGskmcbWkt"
+uri = "file://artifacts/porsche-gt3rs/src/assets/engine.png"
+type = "image"
+title = "GT3 RS Engine"
+
+[[generated]]
+id = "nF5mpPAMiFzb7iQ29griA"
+uri = "file://artifacts/porsche-gt3rs/src/assets/aero.png"
+type = "image"
+title = "GT3 RS Aero"
+
+[[generated]]
+id = "ADcWAvOc_YgLKsBawa8Wh"
+uri = "file://artifacts/porsche-gt3rs/src/assets/config_base.png"
+type = "image"
+title = "GT3 RS Config base"
+
+[[generated]]
+id = "Cs-Hnbo5Cd5XdiAhNW7oS"
+uri = "file://artifacts/porsche-gt3rs/src/assets/gallery1.png"
+type = "image"
+title = "GT3 RS Gallery 1"
+
+[[generated]]
+id = "pAN32gQvWhnCz2rOmhSBs"
+uri = "file://artifacts/porsche-gt3rs/src/assets/gallery2.png"
+type = "image"
+title = "GT3 RS Gallery 2"
+
+[[generated]]
+id = "13fBKNG6DbGN_dgglsVhM"
+uri = "file://artifacts/porsche-gt3rs/src/assets/gallery3.png"
+type = "image"
+title = "GT3 RS Gallery 3"
+
+[[generated]]
+id = "ywZ-9M7f9EneUCWwNAiYs"
+uri = "file://artifacts/porsche-gt3rs/src/assets/gallery4.png"
+type = "image"
+title = "GT3 RS Gallery 4"

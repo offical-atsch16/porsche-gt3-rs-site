@@ -1,0 +1,31 @@
+Erstelle eine atemberaubende, hochmoderne Website für den Porsche 911 GT3 RS, die die Dynamik und Leistung des Fahrzeugs durch spektakuläre Animationen und nahtlose Übergänge zum Leben erweckt. Nutze React, Tailwind CSS, TypeScript und eine Animationsbibliothek wie Framer Motion oder GSAP.
+Anforderungen:
+1. Visuelles Design:
+ Ästhetik: Ein minimalistisches, technologisches und aggressives Design, das die Ästhetik des GT3 RS widerspiegelt. Verwende eine Farbpalette aus Carbon-Schwarz, Weiß, Grau und Akzenten in leuchtendem Rot oder Gelb (entsprechend der Porsche-Tradition).
+ Typografie: Klare, moderne, serifenlose Schriftarten, die Professionalität und Geschwindigkeit vermitteln. Große, mutige Überschriften und gut lesbarer Fließtext.
+ Bilder & Videos: Verwende hochauflösende Bilder und Videos des GT3 RS in Aktion auf Rennstrecken und in anspruchsvollen Umgebungen.
+2. Animationen & Übergänge:
+ Seitenlade-Animation: Ein dynamischer Ladebildschirm, der ein stilisiertes Porsche-Logo oder eine Silhouette des GT3 RS zeigt, gefolgt von einer sanften Einblendung der Homepage.
+ Scrolling-Effekte: Implementiere Parallax-Scrolling-Effekte, bei denen sich Hintergrundelemente langsamer bewegen als Vordergrundelemente, um Tiefe zu erzeugen.
+ Element-Animationen: Elemente wie Textblöcke, Bilder und Schaltflächen sollten beim Scrollen sanft in den Sichtbereich gleiten, einzoomen oder verblassen. Verwende subtile Hover-Effekte für interaktive Elemente.
+ Navigationsübergänge: Erstelle weiche Übergänge zwischen den verschiedenen Abschnitten der Website (z. B. eine sanfte Verschiebung oder ein Ein- und Ausblenden).
+ Spezialeffekte: Integriere Animationen, die technische Details hervorheben, z. B. eine animierte Explosionszeichnung des Motors oder eine Visualisierung der Aerodynamik (Luftstromsimulation).
+3. Inhalt & Details:
+ Homepage: Eine beeindruckende Hero-Sektion mit einem großen Video oder Bild des GT3 RS, einer fesselnden Überschrift und einem Call-to-Action. Ein kurzer Überblick über die wichtigsten Leistungsdaten und Highlights.
+ Technische Daten: Ein detaillierter Abschnitt mit allen technischen Daten wie Motorleistung, Drehmoment, Beschleunigung, Höchstgeschwindigkeit, Gewicht usw. Verwende interaktive Diagramme oder Grafiken zur Visualisierung.
+ Design & Aerodynamik: Detaillierte Beschreibungen und visuelle Darstellungen des Designs, der Aerodynamik (Flügel, Lufteinlässe) und der verwendeten Materialien (Carbon).
+ Performance: Ein Abschnitt, der die Performance auf der Rennstrecke hervorhebt, mit Erfahrungsberichten, Videos von Rundenzeiten und Informationen zur Fahrwerkstechnik.
+ Konfigurator: Ein interaktiver Konfigurator, mit dem Benutzer Farben, Felgen, Innenausstattung und Optionen auswählen können.
+ Galerie: Eine Galerie mit hochauflösenden Bildern und Videos des GT3 RS aus verschiedenen Perspektiven.
+ Über Porsche: Ein kurzer Abschnitt über die Geschichte von Porsche und die Philosophie hinter dem GT3 RS.
+ Kontakt: Ein Kontaktformular und Informationen zu Händlern.
+4. Funktionalität:
+ Responsive Design: Die Website muss auf allen Geräten (Desktop, Tablet, Smartphone) perfekt funktionieren und gut aussehen.
+ Schnelle Ladezeiten: Optimiere Bilder und Videos für schnelle Ladezeiten.
+ Benutzerfreundlichkeit: Eine intuitive Navigation und klare Strukturierung des Inhalts.
+ Interaktivität: Integriere interaktive Elemente wie 360-Grad-Ansichten oder Videos, die auf Benutzerinteraktionen reagieren.
+Code-Qualität:
+ Schreibe sauberen, modularen und gut kommentierten Code.
+ Achte auf Performance und Barrierefreiheit.
+ Verwende moderne Web-Entwicklungsstandards.
+Ziel: Erstelle eine Website, die nicht nur informiert, sondern auch die Leidenschaft und Faszination für den Porsche 911 GT3 RS weckt und den Benutzer auf eine virtuelle Reise voller Geschwindigkeit und Technologie mitnimmt
