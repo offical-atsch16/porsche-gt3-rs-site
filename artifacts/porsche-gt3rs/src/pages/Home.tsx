@@ -29,27 +29,53 @@ export default function Home() {
         <main>
           <Hero />
 
+          {/*
+            Transition 1: Hero → PerformanceStats
+            You just saw the car. Now the raw numbers arrive.
+            The headline "THE NUMBERS" primes you for the stats section below.
+          */}
           <ZoomReveal
             image={heroImg}
-            label="525 PS"
-            subtitle="Raw Metrics"
+            badge="Performance"
+            headline="THE NUMBERS"
+            subline="Every metric obsessively optimised for one purpose: the lap."
+            stats={[
+              { value: "525 PS", label: "Horsepower" },
+              { value: "9000", label: "RPM Redline" },
+              { value: "3.2s", label: "0–100 km/h" },
+              { value: "296", label: "km/h Top Speed" },
+            ]}
           />
 
           <PerformanceStats />
           <Engine />
 
+          {/*
+            Transition 2: Engine → Aerodynamics
+            525 PS from the engine section is still in your mind.
+            This transition bridges: all that power is useless without grip.
+            Sets up the aerodynamics section logically.
+          */}
           <ZoomReveal
             image={engineImg}
-            label="9000 RPM"
-            subtitle="The Redline"
+            badge="From Power to Grip"
+            headline="525 PS NEED GROUND"
+            subline="Pure power means nothing without the aerodynamics to keep it planted."
           />
 
           <Aerodynamics />
 
+          {/*
+            Transition 3: Aerodynamics → LapTimes
+            You've learned about 860 kg of downforce.
+            Now see the only number that matters: what it achieves on track.
+            The lap time is the payoff for everything above.
+          */}
           <ZoomReveal
             image={aeroImg}
-            label="860 KG"
-            subtitle="Downforce at 285 km/h"
+            badge="Nürburgring Nordschleife"
+            headline="6:49.328"
+            subline="20.8 km · 73 corners · The Green Hell doesn't lie."
           />
 
           <LapTimes />
