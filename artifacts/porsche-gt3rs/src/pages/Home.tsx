@@ -14,9 +14,12 @@ import InteriorShowcase from "@/components/InteriorShowcase";
 import Footer from "@/components/Footer";
 import ZoomReveal from "@/components/ZoomReveal";
 
-import heroImg    from "@/assets/hero.png";
-import engineImg  from "@/assets/engine.png";
-import aeroImg    from "@/assets/aero.png";
+import heroImg     from "@/assets/hero.png";
+import engineImg   from "@/assets/engine.png";
+import aeroImg     from "@/assets/aero.png";
+import cockpitImg  from "@/assets/interior_cockpit.png";
+import wheelImg    from "@/assets/interior_wheel.png";
+import colorRedImg from "@/assets/color_red.png";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -31,38 +34,45 @@ export default function Home() {
         <main>
           <Hero />
 
-          {/*
-            TRANSITION 1 — Hero → PerformanceStats
-            Info revealed: WEIGHT REDUCTION
-            Why here: The Hero shows the car. Before the raw numbers arrive,
-            this reveals HOW the GT3 RS is so fast — obsessive weight reduction.
-            Carbon hood, magnesium roof, CFRP doors. 1,111 kg is the result.
-            The PerformanceStats section below then shows what that weight enables.
-          */}
+          {/* ── TRANSITION 1 — Hero → PerformanceStats ─────────────────
+              WEIGHT OBSESSION: 1,111 kg — before the raw numbers land,
+              reveal the engineering story behind that figure.             */}
           <ZoomReveal
             image={heroImg}
             badge="Weight Obsession"
             headline="1,111 KG"
             subline="Carbon hood. Magnesium roof. CFRP doors. Lithium battery. Every gram earns its place."
             stats={[
-              { value: "CFRP", label: "Carbon Hood" },
-              { value: "Mg",   label: "Magnesium Roof" },
-              { value: "Li",   label: "Lithium Battery" },
-              { value: "472",  label: "PS per Tonne" },
+              { value: "CFRP",  label: "Carbon Hood" },
+              { value: "Mg",    label: "Magnesium Roof" },
+              { value: "Li",    label: "Lithium Battery" },
+              { value: "472",   label: "PS per Tonne" },
             ]}
           />
 
           <PerformanceStats />
+
+          {/* ── TRANSITION 2 — PerformanceStats → Engine ────────────────
+              HIGH REVS: The stats showed numbers — now explain the
+              machine behind them. 9,000 RPM, no turbo, pure mechanical. */}
+          <ZoomReveal
+            image={engineImg}
+            badge="Naturally Aspirated"
+            headline="9,000"
+            subline="RPM. No forced induction. No hybrid assist. Pure flat-six. The redline is not a warning — it is a destination."
+            stats={[
+              { value: "4.0L",   label: "Displacement" },
+              { value: "525",    label: "Horsepower" },
+              { value: "9,000",  label: "Redline RPM" },
+              { value: "PDK",    label: "7-Speed" },
+            ]}
+          />
+
           <Engine />
 
-          {/*
-            TRANSITION 2 — Engine → Aerodynamics
-            Info revealed: CHASSIS & TYRES
-            Why here: The Engine section covers power delivery.
-            This transition bridges to Aerodynamics by revealing what puts that
-            power onto the ground — Michelin Cup 2 R tyres, PDCC Sport,
-            double-wishbone suspension. Physics in motion before downforce arrives.
-          */}
+          {/* ── TRANSITION 3 — Engine → Aerodynamics ────────────────────
+              CHASSIS & TYRES: Engine → grip that uses the power.
+              Michelin Cup 2 R, double-wishbone, PDCC Sport.             */}
           <ZoomReveal
             image={engineImg}
             badge="Chassis & Tyres"
@@ -78,15 +88,9 @@ export default function Home() {
 
           <Aerodynamics />
 
-          {/*
-            TRANSITION 3 — Aerodynamics → LapTimes
-            Info revealed: BRAKING SYSTEM
-            Why here: 860 kg of downforce keeps you on the road.
-            But stopping matters as much as cornering — PCCB ceramic-composite
-            brakes, 408mm discs, 6-piston calipers. 100–0 in 2.7 seconds.
-            This completes the triangle: power → grip → stopping.
-            Then the lap time section shows the result of all three combined.
-          */}
+          {/* ── TRANSITION 4 — Aerodynamics → LapTimes ─────────────────
+              STOPPING POWER: 860 kg downforce means nothing if you can't
+              stop. PCCB ceramic, 408 mm, 100–0 in 2.7 s.               */}
           <ZoomReveal
             image={aeroImg}
             badge="Stopping Power"
@@ -101,18 +105,62 @@ export default function Home() {
           />
 
           <LapTimes />
+
+          {/* ── TRANSITION 5 — LapTimes → Configurator ──────────────────
+              BUILD YOURS: After seeing what it does on track,
+              invite the viewer to make it their own.                    */}
+          <ZoomReveal
+            image={colorRedImg}
+            badge="Make It Yours"
+            headline="YOUR RS"
+            subline="286 colour combinations. Weissach package. Sport Chrono. PCCB. Lift system. Build the GT3 RS that belongs to you."
+            stats={[
+              { value: "286",    label: "Colour Options" },
+              { value: "WP",     label: "Weissach Package" },
+              { value: "PCCB",   label: "Ceramic Brakes" },
+              { value: "PDK",    label: "7-Speed" },
+            ]}
+          />
+
           <Configurator />
           <Gallery />
+
+          {/* ── TRANSITION 6 — Gallery → InteriorShowcase ───────────────
+              THE COCKPIT: Gallery shows the exterior. Before stepping
+              inside, tease the precision of the interior.               */}
+          <ZoomReveal
+            image={cockpitImg}
+            badge="Race Bred Interior"
+            headline="ZERO EXCESS"
+            subline="Race-Tex alcantara. Carbon weave. GT sport seats. Every material chosen for feel, weight, and function."
+            stats={[
+              { value: "RT",    label: "Race-Tex Surfaces" },
+              { value: "CFRP",  label: "Carbon Shell Seats" },
+              { value: "360°",  label: "Driver Focus" },
+              { value: "0 kg",  label: "Unnecessary Mass" },
+            ]}
+          />
+
           <InteriorShowcase />
           <About />
 
-          {/*
-            SUMMARY — Everything in one place
-            After the journey through each system, this section collects
-            all specs into a comprehensive reference table.
-          */}
-          <Summary />
+          {/* ── TRANSITION 7 — About → Summary ──────────────────────────
+              LEGACY: Close the journey. One final fact before the
+              complete specification table.                              */}
+          <ZoomReveal
+            image={heroImg}
+            badge="Racing Legacy"
+            headline="911 GT3 RS"
+            subline="Derived from the GT3 Cup race car. Homologated for the road. One of the most capable production Porsches ever built."
+            stats={[
+              { value: "992",   label: "Generation" },
+              { value: "2023",  label: "Model Year" },
+              { value: "GT",    label: "Motorsport DNA" },
+              { value: "RS",    label: "Rennsport" },
+            ]}
+          />
 
+          <Summary />
           <Footer />
         </main>
       )}
