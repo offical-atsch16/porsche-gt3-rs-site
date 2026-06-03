@@ -14,19 +14,18 @@ interface ZoomRevealProps {
 }
 
 export default function ZoomReveal({ image, badge, headline, subline, stats }: ZoomRevealProps) {
-  const wrapRef   = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
-  const imgRef    = useRef<HTMLImageElement>(null);
-  const overlayRef= useRef<HTMLDivElement>(null);
-  const badgeRef  = useRef<HTMLDivElement>(null);
-  const lineRef   = useRef<HTMLDivElement>(null);
-  const headRef   = useRef<HTMLHeadingElement>(null);
-  const subRef    = useRef<HTMLParagraphElement>(null);
-  const statsRef  = useRef<HTMLDivElement>(null);
+  const wrapRef    = useRef<HTMLDivElement>(null);
+  const stickyRef  = useRef<HTMLDivElement>(null);
+  const imgRef     = useRef<HTMLImageElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const badgeRef   = useRef<HTMLDivElement>(null);
+  const lineRef    = useRef<HTMLDivElement>(null);
+  const headRef    = useRef<HTMLHeadingElement>(null);
+  const subRef     = useRef<HTMLParagraphElement>(null);
+  const statsRef   = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Hard-set initial states
       gsap.set(imgRef.current,     { scale: 1.0, opacity: 0 });
       gsap.set(overlayRef.current, { opacity: 0.55 });
       gsap.set(badgeRef.current,   { opacity: 0, y: 24 });
@@ -49,53 +48,37 @@ export default function ZoomReveal({ image, badge, headline, subline, stats }: Z
         },
       });
 
-      // ── 0–20%: Image fades + zooms in ───────────────────────────
-      tl.to(imgRef.current,
-        { scale: 1.08, opacity: 0.85, ease: "power1.out", duration: 0.20 }, 0);
+      // 0–20%: Image breathes in
+      tl.to(imgRef.current, { scale: 1.08, opacity: 0.85, ease: "power1.out", duration: 0.20 }, 0);
+      // Continuous zoom throughout
+      tl.to(imgRef.current, { scale: 1.55, ease: "none", duration: 0.75 }, 0);
 
-      // ── 0–75%: Slow continuous zoom ─────────────────────────────
-      tl.to(imgRef.current,
-        { scale: 1.55, ease: "none", duration: 0.75 }, 0);
-
-      // ── 10–45%: Content enters ───────────────────────────────────
-      tl.to(badgeRef.current,
-        { opacity: 1, y: 0, ease: "power3.out", duration: 0.10 }, 0.10);
-      tl.to(lineRef.current,
-        { scaleX: 1, ease: "power2.out", duration: 0.12 }, 0.17);
-      tl.to(headRef.current,
-        { opacity: 1, y: 0, skewY: 0, ease: "power4.out", duration: 0.16 }, 0.22);
-      tl.to(subRef.current,
-        { opacity: 1, y: 0, ease: "power2.out", duration: 0.13 }, 0.33);
+      // 10–45%: Content enters
+      tl.to(badgeRef.current, { opacity: 1, y: 0, ease: "power3.out", duration: 0.10 }, 0.10);
+      tl.to(lineRef.current,  { scaleX: 1, ease: "power2.out", duration: 0.12 }, 0.17);
+      tl.to(headRef.current,  { opacity: 1, y: 0, skewY: 0, ease: "power4.out", duration: 0.16 }, 0.22);
+      tl.to(subRef.current,   { opacity: 1, y: 0, ease: "power2.out", duration: 0.13 }, 0.33);
       if (statsRef.current) {
         const items = statsRef.current.querySelectorAll(".si");
-        tl.to(items,
-          { opacity: 1, y: 0, stagger: 0.04, ease: "power2.out", duration: 0.12 }, 0.41);
+        tl.to(items, { opacity: 1, y: 0, stagger: 0.04, ease: "power2.out", duration: 0.12 }, 0.41);
       }
 
-      // ── 62–80%: Content exits upward ────────────────────────────
+      // 62–80%: Content exits
       const exitTargets = [
         statsRef.current, subRef.current,
         headRef.current, lineRef.current, badgeRef.current,
       ].filter(Boolean);
+      tl.to(exitTargets, { opacity: 0, y: -30, stagger: 0.02, ease: "power2.in", duration: 0.16 }, 0.62);
 
-      tl.to(exitTargets,
-        { opacity: 0, y: -30, stagger: 0.02, ease: "power2.in", duration: 0.16 }, 0.62);
-
-      // ── 75–100%: Image fades out — next section reveals beneath ─
-      // NO black curtain. Overlay stays subtle, image fades to nothing.
-      tl.to(overlayRef.current,
-        { opacity: 0.75, ease: "power1.inOut", duration: 0.12 }, 0.75);
-      tl.to(imgRef.current,
-        { opacity: 0, ease: "power2.in", duration: 0.22 }, 0.78);
-
+      // 75–100%: Image fades — no black curtain
+      tl.to(overlayRef.current, { opacity: 0.75, ease: "power1.inOut", duration: 0.12 }, 0.75);
+      tl.to(imgRef.current,     { opacity: 0, ease: "power2.in", duration: 0.22 }, 0.78);
     }, wrapRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    // Negative bottom margin pulls the NEXT section up so it seamlessly
-    // overlaps as the pin releases — zero visible gap or jump.
     <div ref={wrapRef} style={{ height: "260vh", marginBottom: "-100vh" }}>
       <div
         ref={stickyRef}
@@ -111,10 +94,7 @@ export default function ZoomReveal({ image, badge, headline, subline, stats }: Z
           draggable={false}
         />
 
-        <div
-          ref={overlayRef}
-          className="absolute inset-0 bg-black pointer-events-none"
-        />
+        <div ref={overlayRef} className="absolute inset-0 bg-black pointer-events-none" />
 
         <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl w-full pointer-events-none select-none">
           <div
@@ -131,8 +111,14 @@ export default function ZoomReveal({ image, badge, headline, subline, stats }: Z
           />
           <h2
             ref={headRef}
-            className="text-white font-bold uppercase leading-none tracking-tighter text-5xl md:text-8xl lg:text-[9.5rem] mb-7"
-            style={{ opacity: 0 }}
+            className="font-bold uppercase leading-none tracking-tighter text-5xl md:text-8xl lg:text-[9.5rem] mb-7"
+            style={{
+              opacity: 0,
+              color: "#ffffff",
+              WebkitFontSmoothing: "antialiased",
+              MozOsxFontSmoothing: "grayscale",
+              textRendering: "geometricPrecision",
+            }}
           >
             {headline}
           </h2>
@@ -147,14 +133,24 @@ export default function ZoomReveal({ image, badge, headline, subline, stats }: Z
             <div ref={statsRef} className="flex flex-wrap justify-center gap-8 md:gap-14 mt-10">
               {stats.map((s) => (
                 <div key={s.label} className="si text-center" style={{ opacity: 0 }}>
-                  <div className="text-xl md:text-3xl font-bold text-white tracking-tighter">{s.value}</div>
-                  <div className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 mt-1 font-mono">{s.label}</div>
+                  <div
+                    className="text-xl md:text-3xl font-bold tracking-tighter"
+                    style={{
+                      color: "#ffffff",
+                      WebkitFontSmoothing: "antialiased",
+                      MozOsxFontSmoothing: "grayscale",
+                    }}
+                  >
+                    {s.value}
+                  </div>
+                  <div className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 mt-1 font-mono">
+                    {s.label}
+                  </div>
                 </div>
               ))}
             </div>
           )}
         </div>
-        {/* NO curtain div — sections flow directly into each other */}
       </div>
     </div>
   );
