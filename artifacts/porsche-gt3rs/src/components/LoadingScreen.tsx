@@ -1,112 +1,92 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import porscheLogo from "@/assets/porsche_logo.png";
 
-const TOTAL_MS = 4600;
+const TOTAL_MS = 3800;
 
 export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
+    const start = Date.now();
+    const tick = () => {
+      const p = Math.min(100, ((Date.now() - start) / TOTAL_MS) * 100);
+      setProgress(p);
+      if (p < 100) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
     const t = setTimeout(onComplete, TOTAL_MS);
     return () => clearTimeout(t);
   }, [onComplete]);
 
   return (
     <motion.div
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black gap-0"
-      exit={{ opacity: 0, transition: { duration: 0.75, ease: "easeInOut" } }}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black"
+      exit={{ opacity: 0, transition: { duration: 0.6, ease: "easeInOut" } }}
     >
-      {/* ── Radial glow behind logo ──────────────────────────────── */}
+      {/* Golden glow — visible immediately */}
       <motion.div
         className="absolute pointer-events-none"
         style={{
-          width: 520,
-          height: 520,
+          width: 460,
+          height: 460,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(180,140,40,0.22) 0%, rgba(204,0,0,0.06) 50%, transparent 72%)",
+          background:
+            "radial-gradient(circle, rgba(180,140,40,0.25) 0%, rgba(180,50,0,0.08) 55%, transparent 75%)",
         }}
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{
-          opacity: [0, 0.9, 0.6, 1.0, 0.7],
-          scale:   [0.6, 1.1, 1.0, 1.15, 1.0],
-        }}
-        transition={{
-          duration: 3.8,
-          delay: 0.4,
-          times: [0, 0.3, 0.5, 0.75, 1],
-          ease: "easeInOut",
-        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 1, 0.7, 1, 0.8] }}
+        transition={{ duration: 3.5, times: [0, 0.2, 0.5, 0.75, 1] }}
       />
 
-      {/* ── Porsche logo ──────────────────────────────────────────── */}
+      {/* Logo — visible within first 300ms */}
       <motion.img
         src={porscheLogo}
         alt="Porsche"
         className="relative z-10 select-none pointer-events-none"
-        style={{ width: 200, height: "auto" }}
-        initial={{ opacity: 0, scale: 0.78, filter: "blur(14px)" }}
-        animate={{
-          opacity: [0,    0,    1,    1,    1   ],
-          scale:   [0.78, 0.88, 1.0,  1.03, 1.0 ],
-          filter:  [
-            "blur(14px) brightness(0.4)",
-            "blur(7px)  brightness(0.7)",
-            "blur(0px)  brightness(1.0)",
-            "blur(0px)  brightness(1.1)",
-            "blur(0px)  brightness(1.0)",
-          ],
-        }}
-        transition={{
-          duration: 2.6,
-          delay: 0.35,
-          times: [0, 0.22, 0.55, 0.78, 1],
-          ease: "easeOut",
-        }}
+        style={{ width: 210, height: "auto" }}
+        initial={{ opacity: 0, scale: 0.88 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
         draggable={false}
       />
 
-      {/* ── GT3 RS wipe text ─────────────────────────────────────── */}
-      <motion.div
-        className="relative mt-7 overflow-hidden"
-        style={{ height: 44 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 0.4 }}
-      >
-        {/* Ghost outline */}
-        <span className="absolute inset-0 flex items-center justify-center text-[#1f1f1f] text-4xl font-bold italic tracking-tight whitespace-nowrap select-none">
+      {/* GT3 RS wipe text — appears at 0.5s */}
+      <div className="relative mt-6 overflow-hidden" style={{ height: 44 }}>
+        <span className="absolute inset-0 flex items-center justify-center text-[#1a1a1a] text-4xl font-bold italic tracking-tight whitespace-nowrap select-none">
           GT3&nbsp;RS
         </span>
-        {/* Wipe fill */}
         <motion.div
           className="absolute top-0 left-0 bottom-0 overflow-hidden flex items-center"
-          initial={{ width: 0 }}
+          initial={{ width: "0%" }}
           animate={{ width: "100%" }}
-          transition={{ duration: 1.9, delay: 1.7, ease: "circInOut" }}
+          transition={{ duration: 1.4, delay: 0.4, ease: "easeInOut" }}
         >
           <span className="text-white text-4xl font-bold italic tracking-tight whitespace-nowrap select-none">
             GT3&nbsp;RS
           </span>
         </motion.div>
-      </motion.div>
+      </div>
 
-      {/* ── Status label + progress bar ──────────────────────────── */}
+      {/* Label + live progress bar — visible at 0.5s */}
       <motion.div
-        className="flex flex-col items-center gap-3 mt-8"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2.1, duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col items-center gap-3 mt-7"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.4 }}
       >
         <span className="text-primary font-mono uppercase text-[11px] tracking-[0.45em]">
           Engine Starting
         </span>
-        <div className="relative w-44 h-[1px] bg-white/8 overflow-hidden">
-          <motion.div
-            className="absolute left-0 top-0 h-full bg-primary"
-            initial={{ width: "0%" }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 2.1, delay: 2.2, ease: "easeInOut" }}
+        <div className="relative w-44 h-[1px] bg-white/10 overflow-hidden">
+          <div
+            className="absolute left-0 top-0 h-full bg-primary transition-none"
+            style={{ width: `${progress}%`, transition: "width 50ms linear" }}
           />
         </div>
+        <span className="text-white/30 font-mono text-[10px] tracking-widest">
+          {Math.round(progress)}%
+        </span>
       </motion.div>
     </motion.div>
   );

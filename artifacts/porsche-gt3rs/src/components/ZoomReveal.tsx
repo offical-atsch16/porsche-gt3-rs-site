@@ -14,27 +14,25 @@ interface ZoomRevealProps {
 }
 
 export default function ZoomReveal({ image, badge, headline, subline, stats }: ZoomRevealProps) {
-  const wrapRef    = useRef<HTMLDivElement>(null);
-  const stickyRef  = useRef<HTMLDivElement>(null);
-  const imgRef     = useRef<HTMLImageElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const badgeRef   = useRef<HTMLDivElement>(null);
-  const lineRef    = useRef<HTMLDivElement>(null);
-  const headRef    = useRef<HTMLHeadingElement>(null);
-  const subRef     = useRef<HTMLParagraphElement>(null);
-  const statsRef   = useRef<HTMLDivElement>(null);
-  const curtainRef = useRef<HTMLDivElement>(null);
+  const wrapRef   = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const imgRef    = useRef<HTMLImageElement>(null);
+  const overlayRef= useRef<HTMLDivElement>(null);
+  const badgeRef  = useRef<HTMLDivElement>(null);
+  const lineRef   = useRef<HTMLDivElement>(null);
+  const headRef   = useRef<HTMLHeadingElement>(null);
+  const subRef    = useRef<HTMLParagraphElement>(null);
+  const statsRef  = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Hard-set all initial states — zero chance of flash
-      gsap.set(imgRef.current,     { scale: 1.0,   opacity: 0 });
-      gsap.set(overlayRef.current, { opacity: 0.6 });
-      gsap.set(badgeRef.current,   { opacity: 0,   y: 24  });
-      gsap.set(lineRef.current,    { scaleX: 0,   transformOrigin: "left center" });
-      gsap.set(headRef.current,    { opacity: 0,   y: 52,  skewY: 3 });
-      gsap.set(subRef.current,     { opacity: 0,   y: 28  });
-      gsap.set(curtainRef.current, { opacity: 0 }); // fade curtain, not slide
+      // Hard-set initial states
+      gsap.set(imgRef.current,     { scale: 1.0, opacity: 0 });
+      gsap.set(overlayRef.current, { opacity: 0.55 });
+      gsap.set(badgeRef.current,   { opacity: 0, y: 24 });
+      gsap.set(lineRef.current,    { scaleX: 0, transformOrigin: "left center" });
+      gsap.set(headRef.current,    { opacity: 0, y: 56, skewY: 3 });
+      gsap.set(subRef.current,     { opacity: 0, y: 28 });
       if (statsRef.current) {
         gsap.set(statsRef.current.querySelectorAll(".si"), { opacity: 0, y: 22 });
       }
@@ -43,23 +41,23 @@ export default function ZoomReveal({ image, badge, headline, subline, stats }: Z
         scrollTrigger: {
           trigger: stickyRef.current,
           start: "top top",
-          end: "+=170%",
+          end: "+=160%",
           pin: true,
-          scrub: 1.6,
+          scrub: 1.4,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      // ── Phase 1 (0–20%): Image breathes in ──────────────────────
+      // ── 0–20%: Image fades + zooms in ───────────────────────────
       tl.to(imgRef.current,
-        { scale: 1.1, opacity: 0.78, ease: "power1.inOut", duration: 0.20 }, 0);
+        { scale: 1.08, opacity: 0.85, ease: "power1.out", duration: 0.20 }, 0);
 
-      // ── Phase 2 (0–72%): Continuous slow zoom ───────────────────
+      // ── 0–75%: Slow continuous zoom ─────────────────────────────
       tl.to(imgRef.current,
-        { scale: 1.62, ease: "none", duration: 0.72 }, 0);
+        { scale: 1.55, ease: "none", duration: 0.75 }, 0);
 
-      // ── Phase 3 (10–45%): Content enters ────────────────────────
+      // ── 10–45%: Content enters ───────────────────────────────────
       tl.to(badgeRef.current,
         { opacity: 1, y: 0, ease: "power3.out", duration: 0.10 }, 0.10);
       tl.to(lineRef.current,
@@ -67,34 +65,28 @@ export default function ZoomReveal({ image, badge, headline, subline, stats }: Z
       tl.to(headRef.current,
         { opacity: 1, y: 0, skewY: 0, ease: "power4.out", duration: 0.16 }, 0.22);
       tl.to(subRef.current,
-        { opacity: 1, y: 0, ease: "power2.out", duration: 0.13 }, 0.34);
-
+        { opacity: 1, y: 0, ease: "power2.out", duration: 0.13 }, 0.33);
       if (statsRef.current) {
         const items = statsRef.current.querySelectorAll(".si");
         tl.to(items,
-          { opacity: 1, y: 0, stagger: 0.04, ease: "power2.out", duration: 0.12 }, 0.42);
+          { opacity: 1, y: 0, stagger: 0.04, ease: "power2.out", duration: 0.12 }, 0.41);
       }
 
-      // ── Phase 4 (60–68%): Overlay deepens, content exits ────────
-      tl.to(overlayRef.current,
-        { opacity: 0.80, ease: "power1.in", duration: 0.12 }, 0.58);
-
+      // ── 62–80%: Content exits upward ────────────────────────────
       const exitTargets = [
         statsRef.current, subRef.current,
         headRef.current, lineRef.current, badgeRef.current,
       ].filter(Boolean);
 
       tl.to(exitTargets,
-        { opacity: 0, y: -22, stagger: 0.025, ease: "power2.in", duration: 0.12 }, 0.66);
+        { opacity: 0, y: -30, stagger: 0.02, ease: "power2.in", duration: 0.16 }, 0.62);
 
-      // ── Phase 5 (76–100%): Black fade-out — no visible seam ─────
-      // Overlay goes full black first
+      // ── 75–100%: Image fades out — next section reveals beneath ─
+      // NO black curtain. Overlay stays subtle, image fades to nothing.
       tl.to(overlayRef.current,
-        { opacity: 1, ease: "power2.inOut", duration: 0.08 }, 0.76);
-
-      // Then curtain fades in (double-black = invisible transition)
-      tl.to(curtainRef.current,
-        { opacity: 1, ease: "power2.inOut", duration: 0.14 }, 0.82);
+        { opacity: 0.75, ease: "power1.inOut", duration: 0.12 }, 0.75);
+      tl.to(imgRef.current,
+        { opacity: 0, ease: "power2.in", duration: 0.22 }, 0.78);
 
     }, wrapRef);
 
@@ -102,10 +94,13 @@ export default function ZoomReveal({ image, badge, headline, subline, stats }: Z
   }, []);
 
   return (
-    <div ref={wrapRef} style={{ height: "270vh" }}>
+    // Negative bottom margin pulls the NEXT section up so it seamlessly
+    // overlaps as the pin releases — zero visible gap or jump.
+    <div ref={wrapRef} style={{ height: "260vh", marginBottom: "-100vh" }}>
       <div
         ref={stickyRef}
         className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center"
+        style={{ zIndex: 1 }}
       >
         <img
           ref={imgRef}
@@ -122,14 +117,30 @@ export default function ZoomReveal({ image, badge, headline, subline, stats }: Z
         />
 
         <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl w-full pointer-events-none select-none">
-          <div ref={badgeRef} className="text-primary font-mono uppercase tracking-[0.45em] text-xs md:text-sm mb-5" style={{ opacity: 0 }}>
+          <div
+            ref={badgeRef}
+            className="text-primary font-mono uppercase tracking-[0.45em] text-xs md:text-sm mb-5"
+            style={{ opacity: 0 }}
+          >
             {badge}
           </div>
-          <div ref={lineRef} className="w-20 md:w-36 h-[2px] bg-primary mb-7" style={{ transform: "scaleX(0)" }} />
-          <h2 ref={headRef} className="text-white font-bold uppercase leading-none tracking-tighter text-5xl md:text-8xl lg:text-[9.5rem] mb-7" style={{ opacity: 0 }}>
+          <div
+            ref={lineRef}
+            className="w-20 md:w-36 h-[2px] bg-primary mb-7"
+            style={{ transform: "scaleX(0)" }}
+          />
+          <h2
+            ref={headRef}
+            className="text-white font-bold uppercase leading-none tracking-tighter text-5xl md:text-8xl lg:text-[9.5rem] mb-7"
+            style={{ opacity: 0 }}
+          >
             {headline}
           </h2>
-          <p ref={subRef} className="text-gray-400 font-mono text-sm md:text-base uppercase tracking-widest max-w-xl leading-relaxed" style={{ opacity: 0 }}>
+          <p
+            ref={subRef}
+            className="text-gray-400 font-mono text-sm md:text-base uppercase tracking-widest max-w-xl leading-relaxed"
+            style={{ opacity: 0 }}
+          >
             {subline}
           </p>
           {stats && stats.length > 0 && (
@@ -143,13 +154,7 @@ export default function ZoomReveal({ image, badge, headline, subline, stats }: Z
             </div>
           )}
         </div>
-
-        {/* Curtain — fade, not slide → zero-seam transition */}
-        <div
-          ref={curtainRef}
-          className="absolute inset-0 bg-black z-30 pointer-events-none"
-          style={{ opacity: 0 }}
-        />
+        {/* NO curtain div — sections flow directly into each other */}
       </div>
     </div>
   );
