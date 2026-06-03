@@ -10,6 +10,7 @@ import Configurator from "@/components/Configurator";
 import Gallery from "@/components/Gallery";
 import About from "@/components/About";
 import Summary from "@/components/Summary";
+import InteriorShowcase from "@/components/InteriorShowcase";
 import Footer from "@/components/Footer";
 import ZoomReveal from "@/components/ZoomReveal";
 
@@ -102,6 +103,7 @@ export default function Home() {
           <LapTimes />
           <Configurator />
           <Gallery />
+          <InteriorShowcase />
           <About />
 
           {/*
