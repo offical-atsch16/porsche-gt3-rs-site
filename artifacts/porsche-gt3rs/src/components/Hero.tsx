@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import heroImg from "@/assets/hero.png";
+import heroImg from "@/assets/gallery_side_profile.jpeg";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);

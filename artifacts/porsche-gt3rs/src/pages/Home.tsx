@@ -15,11 +15,11 @@ import Footer from "@/components/Footer";
 import ZoomReveal from "@/components/ZoomReveal";
 import SplitReveal from "@/components/SplitReveal";
 
-import heroImg     from "@/assets/hero.png";
-import engineImg   from "@/assets/engine.png";
-import aeroImg     from "@/assets/aero.png";
-import cockpitImg  from "@/assets/interior_cockpit.png";
-import colorRedImg from "@/assets/color_red.png";
+import heroImg     from "@/assets/gallery_rear_track.jpeg";
+import engineImg   from "@/assets/gallery_driver.jpeg";
+import aeroImg     from "@/assets/gallery_wing.jpeg";
+import cockpitImg  from "@/assets/gallery_interior.jpeg";
+import colorRedImg from "@/assets/gallery_side_profile.jpeg";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);

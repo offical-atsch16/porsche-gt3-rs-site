@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import aeroImg from "@/assets/aero.png";
+import aeroImg from "@/assets/gallery_wing.jpeg";
 
 export default function Aerodynamics() {
   const ref = useRef(null);
