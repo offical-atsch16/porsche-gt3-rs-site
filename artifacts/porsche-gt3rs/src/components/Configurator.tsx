@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 
 import imgRubyStar    from "@/assets/color_ruby_star.png";
 import imgPeruRed     from "@/assets/color_peru_red.png";
@@ -55,15 +55,55 @@ export default function Configurator() {
   const toggleOpt = (id: string) =>
     setOpts((prev) => prev.includes(id) ? prev.filter((o) => o !== id) : [...prev, id]);
 
+  const headerRef = useRef(null);
+  const inView    = useInView(headerRef, { once: true, margin: "-80px" });
+
   return (
-    <section className="py-24 bg-[#090909] border-y border-white/5 overflow-hidden">
+    <section
+      className="py-24 bg-[#090909] border-y border-white/5 overflow-hidden"
+      style={{ position: "relative", zIndex: 10 }}
+    >
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* ── Header ── */}
-        <div className="mb-16">
-          <div className="text-primary font-mono uppercase tracking-[0.4em] text-xs mb-4">Configure</div>
-          <div className="w-16 h-[2px] bg-primary mb-6" />
-          <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter">Build Your Weapon</h2>
+        {/* ── Header — dramatic entrance ── */}
+        <div ref={headerRef} className="mb-16 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="text-primary font-mono uppercase tracking-[0.4em] text-xs mb-4"
+          >
+            Configure
+          </motion.div>
+
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={inView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            style={{ transformOrigin: "left" }}
+            className="w-16 h-[2px] bg-primary mb-6"
+          />
+
+          <div className="overflow-hidden">
+            <motion.h2
+              initial={{ y: "105%", skewY: 4 }}
+              animate={inView ? { y: "0%", skewY: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl md:text-6xl font-bold uppercase tracking-tighter"
+              style={{ display: "block" }}
+            >
+              Build Your Weapon
+            </motion.h2>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.38 }}
+            className="text-gray-500 font-mono text-sm uppercase tracking-widest mt-4 max-w-md"
+          >
+            Select your paint · Choose your package · Add your options
+          </motion.p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-10 items-start">

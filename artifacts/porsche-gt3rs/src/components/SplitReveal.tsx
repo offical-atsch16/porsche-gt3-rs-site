@@ -99,7 +99,7 @@ export default function SplitReveal({
     <div ref={wrapRef} style={{ height: "255vh", marginBottom: "-100vh" }}>
       <div
         ref={stickyRef}
-        className="sticky top-0 h-screen w-full overflow-hidden"
+        className="sticky top-0 h-screen w-full overflow-hidden pointer-events-none"
         style={{ zIndex: 1 }}
       >
         {/* Background image — revealed when panels open */}

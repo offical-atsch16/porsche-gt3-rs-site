@@ -82,7 +82,7 @@ export default function ZoomReveal({ image, badge, headline, subline, stats }: Z
     <div ref={wrapRef} style={{ height: "260vh", marginBottom: "-100vh" }}>
       <div
         ref={stickyRef}
-        className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center"
+        className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center pointer-events-none"
         style={{ zIndex: 1 }}
       >
         <img
