@@ -23,7 +23,7 @@ export default function Footer() {
         </p>
 
         <div className="text-gray-700 text-xs font-mono tracking-widest uppercase">
-          &copy; {new Date().getFullYear()} &nbsp;·&nbsp; Fan Project &nbsp;·&nbsp; Built for the love of motorsport
+          &copy; {new Date().getFullYear()} &nbsp;&nbsp;·&nbsp; Developed and Build by Arien Tschemeris
         </div>
       </div>
     </footer>
