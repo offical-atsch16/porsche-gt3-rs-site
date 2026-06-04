@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import imgRed      from "@/assets/color_red.png";
-import imgYellow   from "@/assets/color_yellow.png";
-import imgSilver   from "@/assets/color_silver.png";
-import imgBlue     from "@/assets/color_blue.png";
-import imgShark    from "@/assets/color_sharkblue.png";
-import imgChalk    from "@/assets/color_chalk.png";
+import imgRubyStar    from "@/assets/color_ruby_star.png";
+import imgPeruRed     from "@/assets/color_peru_red.png";
+import imgMexicoBlue  from "@/assets/color_mexico_blue.png";
+import imgBahamaYellow from "@/assets/color_bahama_yellow.png";
+import imgViolaPurple from "@/assets/color_viola_purple.png";
+import imgGulfOrange  from "@/assets/color_gulf_orange.png";
 
 const COLORS = [
-  { name: "Guards Red",    hex: "#CC0000", img: imgRed    },
-  { name: "Racing Yellow", hex: "#FFD700", img: imgYellow },
-  { name: "GT Silver",     hex: "#C0C0C0", img: imgSilver },
-  { name: "Miami Blue",    hex: "#007ACC", img: imgBlue   },
-  { name: "Shark Blue",    hex: "#1E3D59", img: imgShark  },
-  { name: "Chalk",         hex: "#D8D4C8", img: imgChalk  },
+  { name: "Ruby Star",           code: "#92", hex: "#8B1A50", img: imgRubyStar    },
+  { name: "Peru Red",            code: "#84", hex: "#A03318", img: imgPeruRed     },
+  { name: "Mexico Blue",         code: "#67", hex: "#3CA8D8", img: imgMexicoBlue  },
+  { name: "Bahama Yellow",       code: "#11", hex: "#E8A020", img: imgBahamaYellow},
+  { name: "Viola Purple Met.",   code: "#109",hex: "#8852C0", img: imgViolaPurple },
+  { name: "Gulf Orange",         code: "#50", hex: "#E85800", img: imgGulfOrange  },
 ];
 
 const PACKAGES = [
@@ -84,8 +84,9 @@ export default function Configurator() {
             </AnimatePresence>
 
             {/* Colour badge */}
-            <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-white border border-white/15">
-              {color.name}
+            <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-white border border-white/15 flex items-center gap-2">
+              <span className="text-primary">{color.code}</span>
+              <span>{color.name}</span>
             </div>
 
             {/* Weissach badge */}
@@ -130,12 +131,20 @@ export default function Configurator() {
                           boxShadow: active ? `0 0 12px ${c.hex}88` : "none",
                         }}
                       />
-                      <span
-                        className="text-[9px] font-mono uppercase text-center leading-tight transition-colors duration-150"
-                        style={{ color: active ? "#ffffff" : "#666" }}
-                      >
-                        {c.name}
-                      </span>
+                      <div className="flex flex-col items-center gap-0.5">
+                        <span
+                          className="text-[8px] font-mono text-center leading-tight transition-colors duration-150"
+                          style={{ color: active ? "#cc0000" : "#444" }}
+                        >
+                          {c.code}
+                        </span>
+                        <span
+                          className="text-[8px] font-mono uppercase text-center leading-tight transition-colors duration-150"
+                          style={{ color: active ? "#ffffff" : "#555" }}
+                        >
+                          {c.name}
+                        </span>
+                      </div>
                     </button>
                   );
                 })}
