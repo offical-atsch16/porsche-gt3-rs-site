@@ -30,7 +30,7 @@ A modern fan website dedicated to the Porsche 911 GT3 RS.
 
 🌐 Preview
 
-Live Demo: https://porsche-gt-3-rs--offical-atsch16.replit.app/
+Live Demo: [Zur Demo](https://porsche-gt-3-rs--offical-atsch16.replit.app)
 
 📜 Disclaimer
 
