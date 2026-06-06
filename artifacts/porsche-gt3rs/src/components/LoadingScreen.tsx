@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import porscheLogo from "@/assets/porsche_logo.png";
 
-const TOTAL_MS = 3800;
+const TOTAL_MS = 2500;
 
 export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
@@ -73,7 +73,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         className="flex flex-col items-center gap-3 mt-7"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.4 }}
+        transition={{ delay: 0.1, duration: 0.4 }}
       >
         <span className="text-primary font-mono uppercase text-[11px] tracking-[0.45em]">
           Engine Starting
