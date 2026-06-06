@@ -9,7 +9,7 @@ import galSideProfile from "@/assets/gallery_side_profile.jpeg";
 
 const PHOTOS = [
   { img: galSideProfile, label: "Side Profile",  sub: "GT3 RS · Track Edition" },
-  { img: galRearTrack,   label: "Rear Three-Quarter", sub: "GT3 RS · On The Limit" },
+  { img: galRearTrack,   label: "Rear Three-Quarter", sub: "Nürnburgring" },
   { img: galWing        ,label: "Swan-Neck Wing", sub: "860 kg Downforce" },
   { img: galDriver,      label: "Ready To Race",  sub: "Porsche Motorsport" },
   { img: galInterior,    label: "The Cockpit",    sub: "Driver-Focused Interior" },
@@ -90,7 +90,7 @@ export default function Gallery() {
               className="absolute top-7 right-8 text-white/50 hover:text-primary font-mono text-sm uppercase tracking-widest transition-colors"
               onClick={() => setActive(null)}
             >
-              [ ESC ]
+              [ Exit ]
             </button>
 
             {/* Prev / Next */}
@@ -132,7 +132,7 @@ function GalleryCell({
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay: index * 0.07, ease: "easeOut" }}
+      transition={{ duration: 0.30, delay: index * 0.07, ease: "easeOut" }}
       className={`relative overflow-hidden cursor-zoom-in group rounded-sm bg-[#111] ${colSpan} ${aspect}`}
       onClick={() => onClick(index)}
     >
