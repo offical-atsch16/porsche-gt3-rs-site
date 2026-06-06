@@ -28,7 +28,7 @@ const PACKAGES = [
   {
     id: "weissach",
     name: "Weissach Package",
-    desc: "Extreme weight reduction. Carbon everywhere. Magnesium wheels.",
+    desc: "Extreme weight reduction. Carbon everywhere. Precsion from Germany.",
     badge: "−35 kg",
     extras: ["Carbon Fibre Bonnet", "Carbon Fibre Roof", "Magnesium Wheels", "Carbon Anti-Roll Bars", "Carbon Interior Trim"],
   },
@@ -70,7 +70,7 @@ export default function Configurator() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="text-primary font-mono uppercase tracking-[0.4em] text-xs mb-4"
           >
             Configure
