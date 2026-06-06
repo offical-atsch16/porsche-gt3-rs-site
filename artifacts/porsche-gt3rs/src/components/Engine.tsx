@@ -55,7 +55,7 @@ export default function Engine() {
 
               <div className="mt-10 grid grid-cols-2 gap-8">
                 <div className="border-t border-white/20 pt-4">
-                  <div className="text-3xl font-bold text-white">465 Nm</div>
+                  <div className="text-3xl font-bold text-white">465 nm</div>
                   <div className="text-xs uppercase tracking-widest text-gray-500 mt-1">
                     Max Torque
                   </div>
@@ -116,7 +116,7 @@ export default function Engine() {
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 1.2, duration: 0.5 }}
             >
-              4.0L Flat-Six · 525 PS
+                4.0L Flat-Six · 525 PS
             </motion.div>
           </div>
 
