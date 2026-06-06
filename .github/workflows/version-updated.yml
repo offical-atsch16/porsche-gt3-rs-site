@@ -9,14 +9,15 @@ permissions:
   contents: write
 
 jobs: 
+      
+bump-version:
+    runs-on: ubuntu-latest
+
+steps:
       - name: Debug Commit Message
         run: |
           echo "${{ github.event.head_commit.message }}"
 
-bump-version:
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
