@@ -64,8 +64,8 @@ export default function LapTimes() {
           </div>
           
           <div className="mt-8 flex justify-between items-center text-xs md:text-sm font-mono uppercase tracking-widest text-gray-500 border-t border-white/10 pt-4">
-            <span>Sector: Nürburgring Nordschleife</span>
-            <span className="text-primary">Status: Valid</span>
+            <span>Nürburgring Nordschleife</span>
+            <span className="text-primary">German Precison</span>
           </div>
         </motion.div>
       </div>
