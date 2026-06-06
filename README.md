@@ -5,7 +5,7 @@
 ![Status](https://img.shields.io/badge/Status-In_Development-orange?style=for-the-badge)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![Version](https://img.shields.io/github/v/tag/offical-atsch16/porsche-gt3-rs-site?sort=semver&style=for-the-badge)
+![Version](https://img.shields.io/github/v/tag/offical-atsch16/porsche-gt3-rs-site)
 
 A modern fan website dedicated to the Porsche 911 GT3 RS.
 
