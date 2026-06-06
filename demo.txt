@@ -2,4 +2,4 @@
 
 Dies ist eine Datei um Pull Request zu testen im Zusammenhang mit Workflows
 
-#minor v2
+#minor v3
