@@ -221,7 +221,7 @@ export default function Summary() {
             6:49.328
           </div>
           <div className="text-primary font-mono uppercase tracking-widest text-xs md:text-sm">
-            Nürburgring Nordschleife · Production Car Record
+            Nürburgring Nordschleife
           </div>
           <div className="mt-8 text-gray-600 font-mono uppercase tracking-[0.3em] text-xs">
             Born in Flacht. Built for one purpose.
