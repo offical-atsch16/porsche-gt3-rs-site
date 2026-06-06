@@ -3,7 +3,7 @@ name: Auto Version AT
 on:
   push:
     branches:
-      - main
+      - testing
 
 permissions:
   contents: write
