@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏎️ Porsche GT3 RS Fan Website
+# Porsche GT3 RS Fan Website
 
 ![Status](https://img.shields.io/badge/Status-In_Development-orange?style=for-the-badge)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
