@@ -34,4 +34,4 @@ Live Demo: [Zur Demo](https://porsche-gt-3-rs--offical-atsch16.replit.app)
 
 > 📜 Disclaimer
 
-> This is an unofficial fan project and is not affiliated with Porsche.
+> This is an unofficial fan project and is not affiliated with DR. ING. H.C. F. PORSCHE AG
