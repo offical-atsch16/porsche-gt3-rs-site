@@ -107,7 +107,7 @@ export default function Home() {
           <ZoomReveal
             image={colorRedImg}
             badge="Make It Yours"
-            headline="YOUR RS"
+            headline="YOUR GT3 RS"
             subline="286 colour combinations. Weissach package. Sport Chrono. PCCB. Build the GT3 RS that belongs to you."
             stats={[
               { value: "286",  label: "Colour Options" },
