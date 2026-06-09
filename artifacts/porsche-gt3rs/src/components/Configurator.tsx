@@ -32,6 +32,11 @@ const PACKAGES = [
     badge: "−35 kg",
     extras: ["Carbon Fibre Bonnet", "Carbon Fibre Roof", "Magnesium Wheels", "Carbon Anti-Roll Bars", "Carbon Interior Trim"],
   },
+    id: "clubsport",
+    name: "Clubsport Package",
+    desc: "Track-day essentials. Roll cage, fire extinguisher, and more.",
+    bagde: "Track Weapon,
+    extras: ["Full Roll Cage", "Fire Extinguisher", "6-Point Harnesses", "Onboard Air Jack System"],
 ];
 
 const OPTIONS = [
@@ -43,6 +48,7 @@ const OPTIONS = [
 
 const INTERIORS = [
   { id: "racetex", name: "Race-Tex",  desc: "Suede-effect Race-Tex upholstery with carbon bucket seats." },
+  { id: "porsche-exclusive", name:"Porsche Exclusive Manufaktur" desc: "Bespoke interior trims, custom leather, and personalized details." },
   { id: "leather", name: "Leather",   desc: "Smooth leather with contrast stitching and bucket seats." },
 ];
 
@@ -73,7 +79,7 @@ export default function Configurator() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="text-primary font-mono uppercase tracking-[0.4em] text-xs mb-4"
           >
-            Configure
+            Configurator
           </motion.div>
 
           <motion.div
@@ -136,7 +142,7 @@ export default function Configurator() {
                 animate={{ opacity: 1, y: 0 }}
                 className="absolute top-4 right-4 bg-primary text-black px-3 py-1 text-xs font-mono uppercase font-bold tracking-wider"
               >
-                Weissach
+                Weissach Package
               </motion.div>
             )}
           </div>

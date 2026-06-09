@@ -23,7 +23,15 @@ export default function Footer() {
         </p>
 
         <div className="text-gray-700 text-xs font-mono tracking-widest uppercase">
-          &copy; {new Date().getFullYear()} &nbsp;&nbsp;·&nbsp; Developed and Build by Arien Tschemeris
+          &copy; {new Date().getFullYear()} &nbsp;&nbsp;·&nbsp;
+          <a
+            href="https://github.com/offical-atsch16"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="hover:text-primary transition-colors"
+          >
+            Built by Arien
+          </a>
         </div>
       </div>
     </footer>
